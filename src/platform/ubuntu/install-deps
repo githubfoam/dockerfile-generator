@@ -1,0 +1,6 @@
+
+
+ENV BASE_DEPS="build-essential cmake git curl"
+
+RUN set -eux -o pipefail && \
+    apt-get update && apt-get install -y ${BASE_DEPS}
