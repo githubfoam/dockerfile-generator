@@ -2,7 +2,7 @@
 
 
 Travis (.com) dev branch:
-[![Build Status](https://travis-ci.com/githubfoam/dockerfile-generator.svg?branch=dev)](https://travis-ci.com/githubfoam/dockerfile-generator)  
+[![Build Status](https://travis-ci.com/githubfoam/dockerfile-generator.svg?branch=master)](https://travis-ci.com/githubfoam/dockerfile-generator)  
 
 ~~~~
 unix/windows file editing problem
