@@ -1,0 +1,9 @@
+FROM __SOURCE_IMAGE__
+
+RUN groupadd -r myuser && useradd -r -g myuser myuser
+
+_INSTALL_DEPS__
+
+USER myuser
+
+ENTRYPOINT ["/bin/bash"]

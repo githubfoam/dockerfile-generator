@@ -1,0 +1,5 @@
+
+ENV BASE_DEPS git curl tar
+
+RUN set -eux -o pipefail && \
+    apk update && apk add $BASE_DEPS
