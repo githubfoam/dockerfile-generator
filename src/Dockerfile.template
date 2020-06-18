@@ -1,6 +1,8 @@
 FROM __SOURCE_IMAGE__
 
-RUN groupadd -r myuser && useradd -r -g myuser myuser
+RUN set -eux && \
+    groupadd --system --gid 1008 builder && \
+    useradd --no-create-home --no-log-init --system --shell /sbin/nologin --uid 1009 --gid 1008 builder
 
 _INSTALL_DEPS__
 

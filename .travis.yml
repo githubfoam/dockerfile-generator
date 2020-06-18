@@ -5,7 +5,7 @@ rvm:
   - 2.7
 env:
   global:
-  - VAGRANT_VERSION="2.2.6"
+  - VAGRANT_VERSION="2.2.9"
 services:
   - docker
 before_install:
@@ -15,7 +15,7 @@ before_install:
   - vagrant version
 jobs:
   include:
-    - stage: vagrant validate
+    - stage: "vagrant validate"
       before_script: skip
       script:
         - gem install bundler #Install Bundler
@@ -23,10 +23,16 @@ jobs:
         - gem list #gem list
         - PATH=$(pwd)/bin:$PATH bundle exec rake vagrant:validate
         - PATH=$(pwd)/bin:$PATH bundle exec rake --tasks
-    - stage: build_base
+    - stage: "build_base"
       script:
-        - sudo make clean # destroy templates 
+        - sudo make clean # destroy templates
         - sudo make autogen
+    - stage: "independent custom build_base"
+      script:
+        - sudo docker build -t fabric2:bionic . --file Dockerfile.fabric2
+        - sudo docker build -t fabric2:alpine . --file Dockerfile.fabric2.alpine
+        - sudo docker build -t fabric2:alpine . --file Dockerfile.centos.httpd
+        - sudo docker image ls
 after_success:
     - stage: Finalize
       script: sudo docker image ls
