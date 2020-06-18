@@ -29,9 +29,10 @@ jobs:
         - sudo make autogen
     - stage: "independent custom build_base"
       script:
-        - sudo docker build -t fabric2:bionic . --file Dockerfile.fabric2
-        - sudo docker build -t fabric2:alpine . --file Dockerfile.fabric2.alpine
-        - sudo docker build -t fabric2:alpine . --file Dockerfile.centos.httpd
+        - DOCKERDIR="dockerfiles"
+        - sudo docker build -t fabric2:bionic . --file $DOCKERDIR/Dockerfile.fabric2
+        - sudo docker build -t fabric2:alpine . --file $DOCKERDIR/Dockerfile.fabric2.alpine
+        - sudo docker build -t fabric2:alpine . --file $DOCKERDIR/Dockerfile.centos.httpd
         - sudo docker image ls
 after_success:
     - stage: Finalize
